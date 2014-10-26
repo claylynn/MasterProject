@@ -19,6 +19,11 @@
 		6FEA64FB19FD4D4E00DA6B4E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEA64E319FD4D4E00DA6B4E /* UIKit.framework */; };
 		6FEA650319FD4D4E00DA6B4E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6FEA650119FD4D4E00DA6B4E /* InfoPlist.strings */; };
 		6FEA650519FD4D4E00DA6B4E /* storyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEA650419FD4D4E00DA6B4E /* storyTests.m */; };
+		6FEA651019FD4DA200DA6B4E /* CSEPageRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEA650F19FD4DA200DA6B4E /* CSEPageRootViewController.m */; };
+		6FEA651319FD4FBB00DA6B4E /* CSEPageContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEA651219FD4FBB00DA6B4E /* CSEPageContentViewController.m */; };
+		6FEA651619FD4FE600DA6B4E /* CSEDrawingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEA651519FD4FE600DA6B4E /* CSEDrawingViewController.m */; };
+		6FEA651919FD500A00DA6B4E /* CSEDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FEA651819FD500A00DA6B4E /* CSEDrawingView.m */; };
+		6FEA651B19FD591B00DA6B4E /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FEA651A19FD591B00DA6B4E /* Storyboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +53,15 @@
 		6FEA650019FD4D4E00DA6B4E /* storyTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "storyTests-Info.plist"; sourceTree = "<group>"; };
 		6FEA650219FD4D4E00DA6B4E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6FEA650419FD4D4E00DA6B4E /* storyTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = storyTests.m; sourceTree = "<group>"; };
+		6FEA650E19FD4DA200DA6B4E /* CSEPageRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSEPageRootViewController.h; sourceTree = "<group>"; };
+		6FEA650F19FD4DA200DA6B4E /* CSEPageRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSEPageRootViewController.m; sourceTree = "<group>"; };
+		6FEA651119FD4FBB00DA6B4E /* CSEPageContentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSEPageContentViewController.h; sourceTree = "<group>"; };
+		6FEA651219FD4FBB00DA6B4E /* CSEPageContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSEPageContentViewController.m; sourceTree = "<group>"; };
+		6FEA651419FD4FE600DA6B4E /* CSEDrawingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSEDrawingViewController.h; sourceTree = "<group>"; };
+		6FEA651519FD4FE600DA6B4E /* CSEDrawingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSEDrawingViewController.m; sourceTree = "<group>"; };
+		6FEA651719FD500A00DA6B4E /* CSEDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSEDrawingView.h; sourceTree = "<group>"; };
+		6FEA651819FD500A00DA6B4E /* CSEDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSEDrawingView.m; sourceTree = "<group>"; };
+		6FEA651A19FD591B00DA6B4E /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,8 +121,17 @@
 		6FEA64E519FD4D4E00DA6B4E /* story */ = {
 			isa = PBXGroup;
 			children = (
+				6FEA651A19FD591B00DA6B4E /* Storyboard.storyboard */,
 				6FEA64EE19FD4D4E00DA6B4E /* CSEAppDelegate.h */,
 				6FEA64EF19FD4D4E00DA6B4E /* CSEAppDelegate.m */,
+				6FEA650E19FD4DA200DA6B4E /* CSEPageRootViewController.h */,
+				6FEA650F19FD4DA200DA6B4E /* CSEPageRootViewController.m */,
+				6FEA651119FD4FBB00DA6B4E /* CSEPageContentViewController.h */,
+				6FEA651219FD4FBB00DA6B4E /* CSEPageContentViewController.m */,
+				6FEA651419FD4FE600DA6B4E /* CSEDrawingViewController.h */,
+				6FEA651519FD4FE600DA6B4E /* CSEDrawingViewController.m */,
+				6FEA651719FD500A00DA6B4E /* CSEDrawingView.h */,
+				6FEA651819FD500A00DA6B4E /* CSEDrawingView.m */,
 				6FEA64F119FD4D4E00DA6B4E /* Images.xcassets */,
 				6FEA64E619FD4D4E00DA6B4E /* Supporting Files */,
 			);
@@ -222,6 +245,7 @@
 			files = (
 				6FEA64EA19FD4D4E00DA6B4E /* InfoPlist.strings in Resources */,
 				6FEA64F219FD4D4E00DA6B4E /* Images.xcassets in Resources */,
+				6FEA651B19FD591B00DA6B4E /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,8 +264,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FEA651019FD4DA200DA6B4E /* CSEPageRootViewController.m in Sources */,
+				6FEA651919FD500A00DA6B4E /* CSEDrawingView.m in Sources */,
 				6FEA64F019FD4D4E00DA6B4E /* CSEAppDelegate.m in Sources */,
 				6FEA64EC19FD4D4E00DA6B4E /* main.m in Sources */,
+				6FEA651319FD4FBB00DA6B4E /* CSEPageContentViewController.m in Sources */,
+				6FEA651619FD4FE600DA6B4E /* CSEDrawingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
