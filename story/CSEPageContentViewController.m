@@ -44,6 +44,14 @@
     self.imageView.image=self.drawedImage;
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"page content view will disappear");
+    if(needSave)
+        [self.delegate autoSaveImage:self.drawedImage];
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -93,12 +101,6 @@
     [self.delegate saveDataToFile];
 }
 
--(void)viewWillDisappear:(BOOL)animated
-{
-    NSLog(@"page content view will disappear");
-    if(needSave)
-        [self.delegate autoSaveImage:self.drawedImage];
-}
 
 
 @end

@@ -37,15 +37,11 @@
         // Make the new context current
         [EAGLContext setCurrentContext:self.context];
         
-        //test only
-        //self.savedImage =[UIImage imageNamed:@"leaves.gif"];
-        
         self.baseEffect = [[GLKBaseEffect alloc] init];
         self.effect = [[GLKBaseEffect alloc] init];
         
         // self.baseEffect.useConstantColor = GL_TRUE;
         // self.baseEffect.constantColor = GLKVector4Make();
-        
         
         self.effect.useConstantColor=GL_FALSE;
         //translate UIView coordinate system to openGL coordinate system
@@ -97,7 +93,7 @@ SceneVertex;
 
 - (void)initView:(UIImage *)image
 {
-    NSLog(@"enter initView");
+    NSLog(@"initView()");
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     
     glGenBuffers(1, &initID);   //step 1
@@ -252,12 +248,6 @@ SceneVertex;
 	}
 }
 
-// Handles the end of a touch event.
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-	// If appropriate, add code necessary to save the state of the application.
-	// This application is not saving state.
-}
 
 -(void)changeColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue
 {
