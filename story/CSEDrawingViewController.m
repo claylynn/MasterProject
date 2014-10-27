@@ -77,4 +77,8 @@
     [view loadView:image];
     [self dismissModalViewControllerAnimated:YES];
 }
+-(void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"view will disappear");
+}
 @end

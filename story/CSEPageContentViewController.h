@@ -14,6 +14,7 @@
 //define a protocal
 @protocol SaveDataDelegate <NSObject>
 -(void)saveDataToFile;
+-(void)autoSaveImage:(UIImage *)image;
 @end
 
 

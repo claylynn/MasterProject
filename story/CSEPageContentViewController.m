@@ -9,6 +9,13 @@
 #import "CSEPageContentViewController.h"
 
 @interface CSEPageContentViewController ()
+{
+    //control the behavior of viewWillDisapper()
+    //there are only two cases that this view will disapper
+    //1.user will draw something: needSave=false. viewWillDisapper() does nothing
+    //2.user will go to another page: needSave=true. viewWillDisapper() saves self.drawedImage
+    Boolean needSave;
+}
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
 @end
@@ -28,8 +35,13 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.imageView.image=self.drawedImage;
+    
+}
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    //the pagecontent view controller will always displays a image if it has.
+    self.imageView.image=self.drawedImage;
 }
 
 - (void)didReceiveMemoryWarning
@@ -51,41 +63,42 @@
 
 - (IBAction)unwindToMain:(UIStoryboardSegue *)unwindSegue
 {
-    NSLog(@"unwind method called");
+    NSLog(@"unwindToMain()");
     UIViewController* sourceViewController = unwindSegue.sourceViewController;
+    //take a snapshot of what the user has drawn
     self.drawedImage = ((GLKView *)sourceViewController.view).snapshot;
-    self.imageView.image= self.drawedImage;
-    if(self.drawedImage == nil)
-    {
-        NSLog(@"received nil snapshot");
-    }
+    needSave=true;
     
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"enter prepareForSegue()");
+    NSLog(@"prepareForSegue()");
+    needSave=false;
     if(self.drawedImage)
     {
         NSLog(@"with inital image");
         CSEDrawingViewController* destinationViewController = segue.destinationViewController;
         CSEDrawingView *destinationView = (CSEDrawingView *)destinationViewController.view;
         destinationView.savedImage = self.drawedImage;
-        if(!destinationView.savedImage)
-            NSLog(@"prepareForSegue:nil destinationView.savedImage");
-        //destinationViewController.savedImage=self.drawImage;
-        
     }
     else
     {
-        NSLog(@"no initial image");
+        NSLog(@"without initial image");
     }
 }
+
 
 - (IBAction)saveImage:(id)sender{
     [self.delegate saveDataToFile];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"page content view will disappear");
+    if(needSave)
+        [self.delegate autoSaveImage:self.drawedImage];
+}
 
 
 @end

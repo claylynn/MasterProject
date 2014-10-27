@@ -11,6 +11,7 @@
 @interface CSEPageRootViewController ()
 {
     NSUInteger currentIndex;
+    NSUInteger preIndex;
 }
 @property (strong, nonatomic) NSMutableArray *pageData;
 @property (strong, nonatomic) CSEPageContentViewController *currentPage;
@@ -44,7 +45,7 @@
     dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     docsDir = dirPaths[0];
     self.dataFilePath = [[NSString alloc] initWithString:
-                         [docsDir stringByAppendingPathComponent:@"data.archive"]];
+                         [docsDir stringByAppendingPathComponent:@"imagedata.archive"]];
     if([filemgr fileExistsAtPath:self.dataFilePath])
     {
         NSLog(@"exist");
@@ -131,6 +132,7 @@
     }
     
     //check if need to add an page
+    /*
     if(currentIndex==[self.pageData count])
     {
         [self.pageData addObject:self.currentPage.drawedImage];
@@ -139,9 +141,10 @@
     {
         self.pageData[currentIndex]=self.currentPage.drawedImage;
     }
-    
+    */
     
     //update current page
+    preIndex=currentIndex;
     currentIndex--;
     
     
@@ -162,13 +165,13 @@
 
 -(IBAction)nextButtonPressed:(id)sender
 {
+    NSLog(@"next button pressed");
     //boundary
     if (currentIndex == 9) {
         return ;
     }
-    
-    
     //check if need to add an page
+    /*
     if(currentIndex==[self.pageData count])
     {
         [self.pageData addObject:self.currentPage.drawedImage];
@@ -177,9 +180,10 @@
     {
         self.pageData[currentIndex]=self.currentPage.drawedImage;
     }
-    
+     */
     
     //update current page
+    preIndex=currentIndex;
     currentIndex++;
     
     //prepare data
@@ -207,6 +211,20 @@
     [NSKeyedArchiver archiveRootObject:self.pageData toFile:self.dataFilePath];
     NSLog(@"save data to file completed");
     
+}
+
+
+-(void)autoSaveImage:(UIImage *)image
+{
+    NSLog(@"auto saving image..");
+    if(preIndex==[self.pageData count])
+    {
+        [self.pageData addObject:image];
+    }
+    else
+    {
+        self.pageData[preIndex]=image;
+    }
 }
 
 @end
