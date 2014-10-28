@@ -87,8 +87,11 @@
     {
         NSLog(@"with inital image");
         CSEDrawingViewController* destinationViewController = segue.destinationViewController;
+        /*
         CSEDrawingView *destinationView = (CSEDrawingView *)destinationViewController.view;
         destinationView.savedImage = self.drawedImage;
+         */
+        destinationViewController.savedImage=self.drawedImage;
     }
     else
     {

@@ -45,7 +45,7 @@
     dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     docsDir = dirPaths[0];
     self.dataFilePath = [[NSString alloc] initWithString:
-                         [docsDir stringByAppendingPathComponent:@"imagedata.archive"]];
+                         [docsDir stringByAppendingPathComponent:@"imagedata1.archive"]];
     if([filemgr fileExistsAtPath:self.dataFilePath])
     {
         NSLog(@"exist");

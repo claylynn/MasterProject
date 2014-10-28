@@ -9,7 +9,8 @@
 #import <GLKit/GLKit.h>
 #import "CSEDrawingView.h"
 
-@interface CSEDrawingViewController : GLKViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+@interface CSEDrawingViewController : GLKViewController<Drawing,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 - (IBAction)changeColor:(UISegmentedControl *)sender;
 - (IBAction)loadImage:(id)sender;
+@property (nonatomic,strong) UIImage *savedImage;
 @end

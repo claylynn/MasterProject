@@ -8,12 +8,14 @@
 
 #import <GLKit/GLKit.h>
 
+
+@protocol Drawing <NSObject>
+- (void)drawing:(CGPoint)start toPoint:(CGPoint)end;
+- (void)clear;
+@end
+
 @interface CSEDrawingView : GLKView
-
-@property(copy, nonatomic) UIImage *savedImage;
-
--(void)changeColorWithRed:(CGFloat)red green:(CGFloat)green blue:(CGFloat)blue;
-- (void)initView:(UIImage *)savedImage;
-- (void) loadView:(UIImage *)userImage;
+@property (weak, nonatomic)id<Drawing> drawingDelegate;
+@property Boolean needErase;
 
 @end
