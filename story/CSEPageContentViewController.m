@@ -99,11 +99,11 @@
     }
 }
 
-
+/*
 - (IBAction)saveImage:(id)sender{
     [self.delegate saveDataToFile];
 }
-
+*/
 
 
 @end

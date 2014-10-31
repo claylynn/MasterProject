@@ -37,6 +37,7 @@
     // Do any additional setup after loading the view.
     
     //file processing
+    
     NSFileManager *filemgr;
     NSString *docsDir;
     NSArray *dirPaths;
@@ -45,7 +46,7 @@
     dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     docsDir = dirPaths[0];
     self.dataFilePath = [[NSString alloc] initWithString:
-                         [docsDir stringByAppendingPathComponent:@"imagedata1.archive"]];
+                         [docsDir stringByAppendingPathComponent:self.fileName]];
     if([filemgr fileExistsAtPath:self.dataFilePath])
     {
         NSLog(@"exist");
@@ -59,10 +60,15 @@
     //[self.pageData addObject:[UIImage imageNamed:@"leaves.gif"]];
     
     //Create pre,next buttons
-    UIBarButtonItem *preButton = [[UIBarButtonItem alloc]initWithTitle:@"pre" style:UIBarButtonItemStylePlain target:self action:@selector(preButtonPressed:)];
-    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc]initWithTitle:@"next" style:UIBarButtonItemStylePlain target:self action:@selector(nextButtonPressed:)];
-    self.navigationItem.leftBarButtonItem = preButton;
-    self.navigationItem.rightBarButtonItem = nextButton;
+    
+    UIBarButtonItem *preButton = [[UIBarButtonItem alloc]initWithTitle:@"Pre" style:UIBarButtonItemStylePlain target:self action:@selector(preButtonPressed:)];
+    UIBarButtonItem *nextButton = [[UIBarButtonItem alloc]initWithTitle:@"Next" style:UIBarButtonItemStylePlain target:self action:@selector(nextButtonPressed:)];
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveDataToFile:)];
+    //self.navigationItem.leftBarButtonItem = preButton;
+    self.navigationItem.rightBarButtonItems = [[NSArray alloc]initWithObjects:nextButton,preButton, nil];
+    self.navigationItem.leftItemsSupplementBackButton=YES;
+    self.navigationItem.leftBarButtonItem=saveButton;
+    
     // Configure the page view controller and add it as a child view controller.
     self.pageViewController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStylePageCurl navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     self.pageViewController.delegate = self;
@@ -198,7 +204,7 @@
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 
--(void)saveDataToFile
+-(IBAction)saveDataToFile:(id)sender
 {
     if(currentIndex==[self.pageData count])
     {
