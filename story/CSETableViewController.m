@@ -10,6 +10,7 @@
 
 @interface CSETableViewController ()
 @property (nonatomic,strong) NSMutableArray *books;
+@property (strong,nonatomic) NSString *dataFilePath;
 @end
 
 @implementation CSETableViewController
@@ -26,6 +27,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //file processing
+    NSFileManager *filemgr;
+    NSString *docsDir;
+    NSArray *dirPaths;
+    
+    filemgr = [NSFileManager defaultManager];
+    dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    docsDir = dirPaths[0];
+    self.dataFilePath = [[NSString alloc] initWithString:
+                         [docsDir stringByAppendingPathComponent:@"tableData.data"]];
+    if([filemgr fileExistsAtPath:self.dataFilePath])
+    {
+        NSLog(@"table data exist");
+        self.books = [NSKeyedUnarchiver unarchiveObjectWithFile:self.dataFilePath];
+    }
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -74,7 +90,6 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    NSIndexPath *index=[self.tableView indexPathForCell:cell];
     cell.textLabel.text=[[NSString alloc]initWithFormat:@"BOOK %d",indexPath.row];
     cell.detailTextLabel.text=@"detail";
     
@@ -156,7 +171,18 @@
     
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [NSKeyedArchiver archiveRootObject:self.books toFile:self.dataFilePath];
+    NSLog(@"save data to file completed");
+    NSLog(@"table view will disappear");
+}
 
+-(void)saveDataToFile
+{
+    [NSKeyedArchiver archiveRootObject:self.books toFile:self.dataFilePath];
 
+}
 
 @end

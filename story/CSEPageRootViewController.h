@@ -11,6 +11,5 @@
 @interface CSEPageRootViewController : UIViewController<UIPageViewControllerDelegate,SaveDataDelegate>
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
-@property (strong,nonatomic) NSString *dataFilePath;
 @property (strong ,nonatomic) NSString *fileName;
 @end

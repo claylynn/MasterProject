@@ -13,6 +13,7 @@
     NSUInteger currentIndex;
     NSUInteger preIndex;
 }
+@property (strong,nonatomic) NSString *dataFilePath;
 @property (strong, nonatomic) NSMutableArray *pageData;
 @property (strong, nonatomic) CSEPageContentViewController *currentPage;
 @end
