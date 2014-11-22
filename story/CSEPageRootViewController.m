@@ -168,17 +168,18 @@
     preIndex=currentIndex;
     currentIndex--;
     
-    
+    NSLog(@"CURRENT INDEX:%d",currentIndex);
     //prepare data
     CSEPageContentViewController *dataViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CSEPageContentViewController"];
     dataViewController.delegate=self;
-    if(self.storyImage[currentIndex]==nil)
+    
+    
+    if(currentIndex < [self.storyImage count])
     {
-        NSLog(@"!!!nil");
-        return;
+        NSLog(@"currentIndex:%d arrayCount:%d",currentIndex,[self.storyImage count]);
+        dataViewController.drawedImage = self.storyImage[currentIndex];
+        dataViewController.typedText=self.storyText[currentIndex];
     }
-    dataViewController.drawedImage = self.storyImage[currentIndex];
-    dataViewController.typedText=self.storyText[currentIndex];
     self.currentPage=dataViewController;
     
     NSArray *viewControllers = @[dataViewController];
@@ -207,12 +208,13 @@
     //update current page
     preIndex=currentIndex;
     currentIndex++;
-    
+    NSLog(@"CURRENT INDEX:%d",currentIndex);
     //prepare data
     CSEPageContentViewController *dataViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CSEPageContentViewController"];
     dataViewController.delegate=self;
-    if(currentIndex<[self.storyImage count])
+    if(currentIndex < [self.storyImage count])
     {
+        NSLog(@"currentIndex:%d arrayCount:%d",currentIndex,[self.storyImage count]);
         dataViewController.drawedImage = self.storyImage[currentIndex];
         dataViewController.typedText=self.storyText[currentIndex];
     }
@@ -246,6 +248,7 @@
 -(void)autoSaveImage:(UIImage *)image
 {
     NSLog(@"auto saving image..");
+    NSLog(@"preIndex %d,count %d",preIndex,[self.storyImage count]);
     if(preIndex==[self.storyImage count])
     {
         [self.storyImage addObject:image];
@@ -256,16 +259,31 @@
     }
 }
 
--(void)autoSaveText:(NSString *)text
+-(void)autoSaveText1:(NSString *)text
 {
     NSLog(@"auto saving text.. :%@",text);
+    NSLog(@"preIndex %d,count %d",preIndex,[self.storyText count]);
     if(preIndex==[self.storyText count])
     {
-        [self.storyImage addObject:text];
+        [self.storyText addObject:text];
     }
     else
     {
-        self.storyImage[preIndex]=text;
+        self.storyText[preIndex]=text;
+    }
+}
+
+-(void)autoSaveText2:(NSString *)text
+{
+    NSLog(@"auto saving text.. :%@",text);
+    NSLog(@"preIndex %d,count %d",preIndex,[self.storyText count]);
+    if(preIndex==[self.storyText count])
+    {
+        [self.storyText addObject:text];
+    }
+    else
+    {
+        self.storyText[currentIndex]=text;
     }
 }
 

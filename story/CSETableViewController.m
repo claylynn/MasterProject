@@ -165,8 +165,8 @@
     CSEPageRootViewController *destinationViewController=segue.destinationViewController;
     UITableViewCell *cell= sender;
     NSIndexPath *index=[self.tableView indexPathForCell:cell];
-    destinationViewController.fileName = [[NSString alloc]initWithFormat:@"book%d.data",index.row];
-    NSLog(@"%@",[[NSString alloc]initWithFormat:@"book%d.data",index.row]);
+    destinationViewController.fileName = [[NSString alloc]initWithFormat:@"book_%d.data",index.row];
+    NSLog(@"%@",[[NSString alloc]initWithFormat:@"book_%d.data",index.row]);
     
     
 }

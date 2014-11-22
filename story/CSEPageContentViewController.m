@@ -43,18 +43,22 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"page content view will appear:%@",self.typedText);
     //the pagecontent view controller will always displays a image if it has.
     self.imageView.image=self.drawedImage;
     self.textView.text=self.typedText;
-    NSLog(@"t!!ext view init:%@",self.typedText);
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
     NSLog(@"page content view will disappear;text:%@",self.textView.text);
     if(needSave)
+    {
         [self.delegate autoSaveImage:self.drawedImage];
-    [self.delegate autoSaveText:self.textView.text];
+        [self.delegate autoSaveText1:self.textView.text];
+    }
+    else
+        [self.delegate autoSaveText2:self.textView.text];
 }
 
 
