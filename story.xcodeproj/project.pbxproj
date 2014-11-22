@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6F76608A1A02939D000B359B /* CSETableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7660891A02939D000B359B /* CSETableViewController.m */; };
 		6F76608D1A029C54000B359B /* CSEBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F76608C1A029C54000B359B /* CSEBook.m */; };
+		6F773A9D1A178C8B00450EE9 /* CSEPageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F773A9C1A178C8A00450EE9 /* CSEPageData.m */; };
 		6FEA64E019FD4D4E00DA6B4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEA64DF19FD4D4E00DA6B4E /* Foundation.framework */; };
 		6FEA64E219FD4D4E00DA6B4E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEA64E119FD4D4E00DA6B4E /* CoreGraphics.framework */; };
 		6FEA64E419FD4D4E00DA6B4E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FEA64E319FD4D4E00DA6B4E /* UIKit.framework */; };
@@ -43,6 +44,8 @@
 		6F7660891A02939D000B359B /* CSETableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSETableViewController.m; sourceTree = "<group>"; };
 		6F76608B1A029C54000B359B /* CSEBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSEBook.h; sourceTree = "<group>"; };
 		6F76608C1A029C54000B359B /* CSEBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSEBook.m; sourceTree = "<group>"; };
+		6F773A9B1A178C8A00450EE9 /* CSEPageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSEPageData.h; sourceTree = "<group>"; };
+		6F773A9C1A178C8A00450EE9 /* CSEPageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSEPageData.m; sourceTree = "<group>"; };
 		6FEA64DC19FD4D4E00DA6B4E /* story.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = story.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FEA64DF19FD4D4E00DA6B4E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6FEA64E119FD4D4E00DA6B4E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -142,6 +145,8 @@
 				6FEA651519FD4FE600DA6B4E /* CSEDrawingViewController.m */,
 				6FEA651719FD500A00DA6B4E /* CSEDrawingView.h */,
 				6FEA651819FD500A00DA6B4E /* CSEDrawingView.m */,
+				6F773A9B1A178C8A00450EE9 /* CSEPageData.h */,
+				6F773A9C1A178C8A00450EE9 /* CSEPageData.m */,
 				6FEA64F119FD4D4E00DA6B4E /* Images.xcassets */,
 				6FEA64E619FD4D4E00DA6B4E /* Supporting Files */,
 			);
@@ -279,6 +284,7 @@
 				6F76608D1A029C54000B359B /* CSEBook.m in Sources */,
 				6FEA64F019FD4D4E00DA6B4E /* CSEAppDelegate.m in Sources */,
 				6F76608A1A02939D000B359B /* CSETableViewController.m in Sources */,
+				6F773A9D1A178C8B00450EE9 /* CSEPageData.m in Sources */,
 				6FEA64EC19FD4D4E00DA6B4E /* main.m in Sources */,
 				6FEA651319FD4FBB00DA6B4E /* CSEPageContentViewController.m in Sources */,
 				6FEA651619FD4FE600DA6B4E /* CSEDrawingViewController.m in Sources */,

@@ -18,6 +18,8 @@
 }
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;
+@property (strong, nonatomic) IBOutlet UITextView *textView;
+
 @end
 
 @implementation CSEPageContentViewController
@@ -36,19 +38,23 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     //the pagecontent view controller will always displays a image if it has.
     self.imageView.image=self.drawedImage;
+    self.textView.text=self.typedText;
+    NSLog(@"t!!ext view init:%@",self.typedText);
 }
 
 -(void)viewWillDisappear:(BOOL)animated
 {
-    NSLog(@"page content view will disappear");
+    NSLog(@"page content view will disappear;text:%@",self.textView.text);
     if(needSave)
         [self.delegate autoSaveImage:self.drawedImage];
+    [self.delegate autoSaveText:self.textView.text];
 }
 
 
@@ -75,6 +81,7 @@
     UIViewController* sourceViewController = unwindSegue.sourceViewController;
     //take a snapshot of what the user has drawn
     self.drawedImage = ((GLKView *)sourceViewController.view).snapshot;
+    
     needSave=true;
     
 }
@@ -83,6 +90,7 @@
 {
     NSLog(@"prepareForSegue()");
     needSave=false;
+    self.typedText=self.textView.text;
     if(self.drawedImage)
     {
         NSLog(@"with inital image");

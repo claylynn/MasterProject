@@ -14,11 +14,13 @@
 //define a protocal
 @protocol SaveDataDelegate <NSObject>
 -(void)autoSaveImage:(UIImage *)image;
+-(void)autoSaveText:(NSString *)text;
 @end
 
 
 
 @interface CSEPageContentViewController : UIViewController
 @property (copy,nonatomic) UIImage *drawedImage;
+@property (strong,nonatomic) NSString *typedText;
 @property (weak, nonatomic)id<SaveDataDelegate>delegate;
 @end

@@ -71,6 +71,7 @@
                     </view>
                     <connections>
                         <outlet property="imageView" destination="gTF-QZ-xRe" id="odj-QR-h4G"/>
+                        <outlet property="textView" destination="aDX-0Z-Qn4" id="P6Q-51-85O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hNB-St-P0h" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -14,14 +14,18 @@
     NSUInteger preIndex;
 }
 @property (strong,nonatomic) NSString *dataFilePath;
+@property (strong, nonatomic) NSMutableArray *storyImage;
+@property (strong, nonatomic) NSMutableArray *storyText;
 @property (strong, nonatomic) NSMutableArray *pageData;
 @property (strong, nonatomic) CSEPageContentViewController *currentPage;
 @end
 
 @implementation CSEPageRootViewController
-@synthesize pageData;
+@synthesize storyImage;
 @synthesize currentPage;
 @synthesize dataFilePath;
+@synthesize pageData;
+@synthesize storyText;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -52,13 +56,19 @@
     {
         NSLog(@"exist");
         self.pageData = [NSKeyedUnarchiver unarchiveObjectWithFile:self.dataFilePath];
+        self.storyImage=self.pageData[0];
+        self.storyText=self.pageData[1];
     }
     else
     {
-        self.pageData = [NSMutableArray arrayWithCapacity:10];
+        self.pageData=[NSMutableArray arrayWithCapacity:2];
+        self.storyImage = [NSMutableArray arrayWithCapacity:10];
+        self.storyText = [NSMutableArray arrayWithCapacity:10];
+
     }
     
-    //[self.pageData addObject:[UIImage imageNamed:@"leaves.gif"]];
+    
+    //[self.storyImage addObject:[UIImage imageNamed:@"leaves.gif"]];
     
     //Create pre,next buttons
     
@@ -78,8 +88,12 @@
     CSEPageContentViewController *startingViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CSEPageContentViewController"];
     startingViewController.delegate=self;
     
-    if([self.pageData count]!=0)
-        startingViewController.drawedImage = self.pageData[currentIndex];
+    if([self.storyImage count]!=0)
+    {
+        startingViewController.drawedImage = self.storyImage[currentIndex];
+    }
+    if([self.storyText count]!=0)
+        startingViewController.typedText = self.storyText[currentIndex];
     self.currentPage=startingViewController;
     NSArray *viewControllers = @[startingViewController];
     [self.pageViewController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
@@ -140,13 +154,13 @@
     
     //check if need to add an page
     /*
-    if(currentIndex==[self.pageData count])
+    if(currentIndex==[self.storyImage count])
     {
-        [self.pageData addObject:self.currentPage.drawedImage];
+        [self.storyImage addObject:self.currentPage.drawedImage];
     }
     else
     {
-        self.pageData[currentIndex]=self.currentPage.drawedImage;
+        self.storyImage[currentIndex]=self.currentPage.drawedImage;
     }
     */
     
@@ -158,12 +172,13 @@
     //prepare data
     CSEPageContentViewController *dataViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CSEPageContentViewController"];
     dataViewController.delegate=self;
-    if(self.pageData[currentIndex]==nil)
+    if(self.storyImage[currentIndex]==nil)
     {
         NSLog(@"!!!nil");
         return;
     }
-    dataViewController.drawedImage = self.pageData[currentIndex];
+    dataViewController.drawedImage = self.storyImage[currentIndex];
+    dataViewController.typedText=self.storyText[currentIndex];
     self.currentPage=dataViewController;
     
     NSArray *viewControllers = @[dataViewController];
@@ -179,13 +194,13 @@
     }
     //check if need to add an page
     /*
-    if(currentIndex==[self.pageData count])
+    if(currentIndex==[self.storyImage count])
     {
-        [self.pageData addObject:self.currentPage.drawedImage];
+        [self.storyImage addObject:self.currentPage.drawedImage];
     }
     else
     {
-        self.pageData[currentIndex]=self.currentPage.drawedImage;
+        self.storyImage[currentIndex]=self.currentPage.drawedImage;
     }
      */
     
@@ -196,8 +211,11 @@
     //prepare data
     CSEPageContentViewController *dataViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"CSEPageContentViewController"];
     dataViewController.delegate=self;
-    if(currentIndex<[self.pageData count])
-        dataViewController.drawedImage = self.pageData[currentIndex];
+    if(currentIndex<[self.storyImage count])
+    {
+        dataViewController.drawedImage = self.storyImage[currentIndex];
+        dataViewController.typedText=self.storyText[currentIndex];
+    }
     self.currentPage=dataViewController;
     
     NSArray *viewControllers = @[dataViewController];
@@ -207,14 +225,18 @@
 
 -(IBAction)saveDataToFile:(id)sender
 {
-    if(currentIndex==[self.pageData count])
+    if(currentIndex==[self.storyImage count])
     {
-        [self.pageData addObject:self.currentPage.drawedImage];
+        [self.storyImage addObject:self.currentPage.drawedImage];
+        [self.storyText addObject:self.currentPage.typedText];
     }
     else
     {
-        self.pageData[currentIndex]=self.currentPage.drawedImage;
+        self.storyImage[currentIndex]=self.currentPage.drawedImage;
+        self.storyText[currentIndex]=self.currentPage.typedText;
     }
+    [self.pageData addObject:self.storyImage];
+    [self.pageData addObject:self.storyText];
     [NSKeyedArchiver archiveRootObject:self.pageData toFile:self.dataFilePath];
     NSLog(@"save data to file completed");
     
@@ -224,13 +246,26 @@
 -(void)autoSaveImage:(UIImage *)image
 {
     NSLog(@"auto saving image..");
-    if(preIndex==[self.pageData count])
+    if(preIndex==[self.storyImage count])
     {
-        [self.pageData addObject:image];
+        [self.storyImage addObject:image];
     }
     else
     {
-        self.pageData[preIndex]=image;
+        self.storyImage[preIndex]=image;
+    }
+}
+
+-(void)autoSaveText:(NSString *)text
+{
+    NSLog(@"auto saving text.. :%@",text);
+    if(preIndex==[self.storyText count])
+    {
+        [self.storyImage addObject:text];
+    }
+    else
+    {
+        self.storyImage[preIndex]=text;
     }
 }
 
