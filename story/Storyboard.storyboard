@@ -254,6 +254,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="OIn-RH-DyT"/>
+                    <connections>
+                        <outlet property="booksTableView" destination="92p-nW-eeG" id="G6Q-Q6-ZsU"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qal-In-8Rr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

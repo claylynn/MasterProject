@@ -10,6 +10,7 @@
 
 @interface CSETableViewController ()
 @property (nonatomic,strong) NSMutableArray *books;
+@property (nonatomic,strong) NSMutableArray *bookNames;
 @property (strong,nonatomic) NSString *dataFilePath;
 @end
 
@@ -36,7 +37,7 @@
     dirPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     docsDir = dirPaths[0];
     self.dataFilePath = [[NSString alloc] initWithString:
-                         [docsDir stringByAppendingPathComponent:@"tableData.data"]];
+                         [docsDir stringByAppendingPathComponent:@"story02.data"]];
     if([filemgr fileExistsAtPath:self.dataFilePath])
     {
         NSLog(@"table data exist");
@@ -49,8 +50,8 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     
     self.title=@"Library";
-    self.tableView.delegate=self;
-    self.tableView.dataSource=self;
+    self.booksTableView.delegate=self;
+    self.booksTableView.dataSource=self;
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
@@ -59,7 +60,7 @@
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
     [super setEditing:editing animated:animated];
-    [self.tableView setEditing:editing animated:animated];
+    [self.booksTableView setEditing:editing animated:animated];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -90,7 +91,9 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text=[[NSString alloc]initWithFormat:@"BOOK %d",indexPath.row];
+    NSLog(@"name of the book %@",[self.bookNames objectAtIndex:indexPath.row]);
+    cell.textLabel.text=[[NSString alloc]initWithFormat:@"%@",
+                         [self.bookNames objectAtIndex:indexPath.row]];
     cell.detailTextLabel.text=@"detail";
     
     // Configure the cell...
@@ -99,23 +102,24 @@
 }
 
 
-/*
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        NSMutableArray *deletedBook = [self.books objectAtIndex:indexPath.row];
-        [self.books removeObject:deletedBook];
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-         withRowAnimation:UITableViewRowAnimationAutomatic];
+        //NSMutableArray *deletedBook = [self.books objectAtIndex:indexPath.row];
+        [self.books removeObjectAtIndex:indexPath.row];
+        [self.bookNames removeObjectAtIndex:indexPath.row];
+        [self.booksTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+
         
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -126,15 +130,41 @@
     return UITableViewCellEditingStyleDelete;
 }
 
+//add a book
 - (void)insertNewObject:(id)sender
 {
-    if (!self.books) {
-        self.books = [[NSMutableArray alloc] init];
-    }
-    [self.books addObject:[[NSMutableArray alloc]init]];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.books count]-1 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    UIAlertView * alert =[[UIAlertView alloc ] initWithTitle:@"Add A Book"
+                                                message:@"Enter the name of your book"
+                                                delegate:self
+                                                cancelButtonTitle:@"Cancel"
+                                                otherButtonTitles: nil];
+    alert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [alert addButtonWithTitle:@"OK"];
+    [alert show];
+    
 }
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        //get input from the alert
+        UITextField *name = [alertView textFieldAtIndex:0];
+        NSLog(@"username: %@", name.text);
+        //save the name
+        if(!self.bookNames){
+            self.bookNames=[[NSMutableArray alloc] init];
+        }
+        [self.bookNames addObject:name.text];
+        //add a book object
+        if (!self.books) {
+            self.books = [[NSMutableArray alloc] init];
+        }
+        [self.books addObject:[[NSMutableArray alloc]init]];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:[self.books count]-1 inSection:0];
+        [self.booksTableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
+
 
 /*
 // Override to support rearranging the table view.
@@ -164,7 +194,7 @@
     //prepare pageData,books[i]
     CSEPageRootViewController *destinationViewController=segue.destinationViewController;
     UITableViewCell *cell= sender;
-    NSIndexPath *index=[self.tableView indexPathForCell:cell];
+    NSIndexPath *index=[self.booksTableView indexPathForCell:cell];
     destinationViewController.fileName = [[NSString alloc]initWithFormat:@"book_%d.data",index.row];
     NSLog(@"%@",[[NSString alloc]initWithFormat:@"book_%d.data",index.row]);
     

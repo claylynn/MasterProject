@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CSEPageRootViewController.h"
-@interface CSETableViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource>
+@interface CSETableViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource,UIAlertViewDelegate>
 
+@property (strong, nonatomic) IBOutlet UITableView *booksTableView;
 @end

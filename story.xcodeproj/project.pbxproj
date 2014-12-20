@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6F76608A1A02939D000B359B /* CSETableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F7660891A02939D000B359B /* CSETableViewController.m */; };
-		6F76608D1A029C54000B359B /* CSEBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F76608C1A029C54000B359B /* CSEBook.m */; };
 		6F773A9D1A178C8B00450EE9 /* CSEPageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 6F773A9C1A178C8A00450EE9 /* CSEPageData.m */; };
 		6F91765B1A4510A900448CF6 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F91765A1A4510A900448CF6 /* red.png */; };
 		6F91765F1A45136600448CF6 /* black.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6F91765C1A45136600448CF6 /* black.jpg */; };
@@ -48,8 +47,6 @@
 /* Begin PBXFileReference section */
 		6F7660881A02939D000B359B /* CSETableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSETableViewController.h; sourceTree = "<group>"; };
 		6F7660891A02939D000B359B /* CSETableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSETableViewController.m; sourceTree = "<group>"; };
-		6F76608B1A029C54000B359B /* CSEBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSEBook.h; sourceTree = "<group>"; };
-		6F76608C1A029C54000B359B /* CSEBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSEBook.m; sourceTree = "<group>"; };
 		6F773A9B1A178C8A00450EE9 /* CSEPageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CSEPageData.h; sourceTree = "<group>"; };
 		6F773A9C1A178C8A00450EE9 /* CSEPageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CSEPageData.m; sourceTree = "<group>"; };
 		6F91765A1A4510A900448CF6 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
@@ -145,8 +142,6 @@
 				6FEA651A19FD591B00DA6B4E /* Storyboard.storyboard */,
 				6FEA64EE19FD4D4E00DA6B4E /* CSEAppDelegate.h */,
 				6FEA64EF19FD4D4E00DA6B4E /* CSEAppDelegate.m */,
-				6F76608B1A029C54000B359B /* CSEBook.h */,
-				6F76608C1A029C54000B359B /* CSEBook.m */,
 				6F7660881A02939D000B359B /* CSETableViewController.h */,
 				6F7660891A02939D000B359B /* CSETableViewController.m */,
 				6FEA650E19FD4DA200DA6B4E /* CSEPageRootViewController.h */,
@@ -305,7 +300,6 @@
 			files = (
 				6FEA651019FD4DA200DA6B4E /* CSEPageRootViewController.m in Sources */,
 				6FEA651919FD500A00DA6B4E /* CSEDrawingView.m in Sources */,
-				6F76608D1A029C54000B359B /* CSEBook.m in Sources */,
 				6FEA64F019FD4D4E00DA6B4E /* CSEAppDelegate.m in Sources */,
 				6F76608A1A02939D000B359B /* CSETableViewController.m in Sources */,
 				6F773A9D1A178C8B00450EE9 /* CSEPageData.m in Sources */,
