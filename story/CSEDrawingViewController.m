@@ -14,6 +14,7 @@
     GLuint initID;
 }
 @property (strong, nonatomic) GLKBaseEffect *baseEffect;
+@property GLfloat lineWidth;
 @end
 
 
@@ -51,7 +52,7 @@
                                                       view.bounds.size.height,
                                                       0.0f, 1.0f);
     self.baseEffect.transform.projectionMatrix = projectionMatrix;
-    
+    self.lineWidth=5.0;
     glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
     glGenBuffers(1,                // STEP 1
                  &vertexBufferID);
@@ -119,7 +120,7 @@ SceneVertex;
     glVertexAttribPointer(GLKVertexAttribTexCoord0, 2, GL_FLOAT, GL_FALSE, sizeof(SceneVertex),
                           NULL+offsetof(SceneVertex, textureCoords));//step 5 again
     
-	glLineWidth(5.0);
+	glLineWidth(self.lineWidth);
 	// Draw
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
     self.baseEffect.useConstantColor=GL_TRUE;
@@ -152,7 +153,7 @@ SceneVertex;
 	
     glEnableVertexAttribArray(GLKVertexAttribPosition);
     glVertexAttribPointer(GLKVertexAttribPosition, 2, GL_FLOAT, GL_FALSE, 0, 0);
-	glLineWidth(5.0);
+	glLineWidth(self.lineWidth);
 	// Draw
 	glDrawArrays(GL_LINES, 0, 2);
 	
@@ -184,20 +185,8 @@ SceneVertex;
 }
 */
 
-- (IBAction)changeColor:(UISegmentedControl *)sender
-{
-    if(sender.selectedSegmentIndex == 0)
-        self.baseEffect.constantColor=GLKVector4Make(1.0f,1.0f,1.0f,1.0f);
-    else if(sender.selectedSegmentIndex == 1)
-        self.baseEffect.constantColor=GLKVector4Make(1.0f,0.0f,0.0f,1.0f);
-    else if (sender.selectedSegmentIndex == 2)
-        self.baseEffect.constantColor=GLKVector4Make(0.0f,1.0f,0.0f,1.0f);
-    else if (sender.selectedSegmentIndex == 3)
-        self.baseEffect.constantColor=GLKVector4Make(0.0f,0.0f,1.0f,1.0f);
-    else if (sender.selectedSegmentIndex == 4)
-        self.baseEffect.constantColor=GLKVector4Make(1.0f,1.0f,1.0f,1.0f);
-    
-}
+
+
 
 - (IBAction)loadImage:(id)sender {
     UIImagePickerController *pickerController = [[UIImagePickerController alloc]
@@ -233,5 +222,53 @@ SceneVertex;
     if(self.savedImage)
         [self initView:self.savedImage];
     
+}
+
+- (IBAction)colorButtonPressed:(UIButton *)sender {
+    switch (sender.tag) {
+            //red
+        case 1:
+            self.baseEffect.constantColor=GLKVector4Make(1.0f,0.0f,0.0f,1.0f);
+            break;
+            //green
+        case 2:
+            NSLog(@"tag");
+            self.baseEffect.constantColor=GLKVector4Make(0.0f,1.0f,0.0f,1.0f);
+            break;
+            //blue
+        case 3:
+            self.baseEffect.constantColor=GLKVector4Make(0.0f,0.0f,1.0f,1.0f);
+            break;
+            //yellow
+        case 4:
+            self.baseEffect.constantColor=GLKVector4Make(1.0f,1.0f,0.0f,1.0f);
+            break;
+            //grey
+        case 5:
+            self.baseEffect.constantColor=GLKVector4Make(0.56f,0.56f,0.56f,1.0f);
+            break;
+            //black
+        case 6:
+            self.baseEffect.constantColor=GLKVector4Make(0.0f,0.0f,0.0f,1.0f);
+            break;
+            //white
+        case 7:
+            self.baseEffect.constantColor=GLKVector4Make(1.0f,1.0f,1.0f,1.0f);
+            break;
+            
+        default:
+            break;
+    }
+}
+
+- (IBAction)widthButtonPressed:(UIButton *)sender {
+    if (sender.tag == 1) {
+        self.lineWidth-=1.0;
+        if(self.lineWidth<1.0)
+            self.lineWidth=1.0;
+    }
+    else{
+        self.lineWidth+=1.0;
+    }
 }
 @end

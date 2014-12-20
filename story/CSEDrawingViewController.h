@@ -13,4 +13,13 @@
 - (IBAction)changeColor:(UISegmentedControl *)sender;
 - (IBAction)loadImage:(id)sender;
 @property (nonatomic,strong) UIImage *savedImage;
+@property CGFloat colorR;
+@property CGFloat colorG;
+@property CGFloat colorB;
+@property (strong, nonatomic) IBOutlet UILabel *labelR;
+@property (strong, nonatomic) IBOutlet UILabel *labelG;
+@property (strong, nonatomic) IBOutlet UILabel *labelB;
+
+- (IBAction)colorButtonPressed:(UIButton *)sender;
+- (IBAction)widthButtonPressed:(UIButton *)sender;
 @end
